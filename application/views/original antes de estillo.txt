@@ -1,0 +1,109 @@
+<!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="utf-8">
+	<title>Lista De Mercado</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity=" 384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+</head>
+
+
+<body>
+
+	Hola! <?php echo $correo; ?> <a href="salir"> Salir</a> 
+
+
+	<?php echo form_open('lista') ;?>
+	<input type="text" name="producto" class="" id="" placeholder="Producto" ></input>
+	<input type="text" name="cantidad" class="" id="" placeholder="cantidad" ></input>
+	<input type="text" name="nota"     class="" id="" placeholder="nota" ></input>
+	<!--<input type="text" class="" id="" placeholder="Cantidad"></input>-->
+	<button>Guardar</button>
+	<?php echo validation_errors(); ?>
+</form>
+<br>
+compartir Lista 
+<?php echo form_open('lista/compartir') ;?>
+<input type="mail" name="mail" class="" id="" placeholder="Correo" ></input>	
+<!--<input type="text" class="" id="" placeholder="Cantidad"></input>-->
+<button>Guardar</button>
+</form>
+<br><br>	
+compartido con 
+<table width="90%"  border="1" cellspacing="0" cellpadding="0">
+	<tbody>
+		<tr>
+			<th>Compartido</th>
+			<th></th>
+		</tr>
+	</tbody>
+	<tbody>
+<?php  //var_dump($compartido);
+foreach ($compartido as $key){?>
+<tr>
+	<td> <?php echo $key['compartir']; ?> </td>
+	<td> <a href="<?php echo site_url('lista/eliminar/').$key['id'].'/1';?>">x</a></td>
+</tr>
+<?php } ?>
+</tbody>
+</table>
+
+
+
+<br><br>
+
+<table width="90%"  border="1" cellspacing="0" cellpadding="0">
+	<thead>
+		<tr>
+			<th>Producto</th>
+			<th>cantidad</th>
+			<th>nota</th>
+			<th>x</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php foreach ($tabla as $key) { ?>
+		<tr>
+			<td><?php echo  $key['nombre_producto']?></td>
+			<td><?php echo  $key['cantidad']?></td>
+			<td><?php echo  $key['nota']?></td>
+			<td><a href="  <?php echo site_url('lista/eliminar/').$key['id'].'/2';?> ">x</a></td>
+		</tr>
+		<?php } ?>
+
+	</tbody>
+</table>
+
+
+<br><br>
+Compartido con migo
+<table width="90%"  border="1" cellspacing="0" cellpadding="0">
+	<thead>
+		<tr>
+			<th>Producto</th>
+			<th>cantidad</th>
+			<th>nota</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php foreach ($compartido_con_migo as $key) { ?>
+		<tr>
+			<td><?php echo  $key['nombre_producto']?></td>
+			<td><?php echo  $key['cantidad']?></td>
+			<td><?php echo  $key['nota']?></td>
+		</tr>
+		<?php } ?>
+
+	</tbody>
+</table>
+<br>
+
+<footer>
+	creado por vacas en vuelo.com
+</footer>
+</body>
+</html>
